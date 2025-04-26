@@ -25,7 +25,7 @@ jobs:
       run: npm install
 
     - name: Run script
-      run: npx ts-node main.ts
+      run: node --require ts-node/register main.ts
       env:
         TW_CONSUMER_KEY: ${{ secrets.TW_CONSUMER_KEY }}
         TW_CONSUMER_SECRET: ${{ secrets.TW_CONSUMER_SECRET }}
