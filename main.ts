@@ -99,7 +99,7 @@ const svg = `
     </text>
 
     <text x="${HEADER_X}" y="${HEADER_Y + 40}" class="txt tiny">
-      Here are my current projects and their live stats (updated daily):
+      Here are my current projects and their live stats (updated hourly):
     </text>
 
     <text x="${LEFT_COL_X}"  y="${ROW1_Y}" class="txt big">${vim.totalSolutions}</text>
