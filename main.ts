@@ -36,14 +36,14 @@ async function getStats(): Promise<{ vim: VimStats, news: NewsStats }> {
 async function buildBanner({ vim, news }: { vim: VimStats, news: NewsStats }, previousStats: { vim: VimStats, news: NewsStats } | null) {
 
   // --- Layout Constants ---
-  const HEADER_X = 450;
-  const LEFT_COL_X = 500;
-  const RIGHT_COL_X = 1000;
+  const HEADER_X = 200;
+  const LEFT_COL_X = 400;
+  const RIGHT_COL_X = LEFT_COL_X + 500;
 
-  const HEADER_Y = 50;
-  const ROW1_Y = 240;
-  const ROW2_Y = 280;
-  const ROW3_Y = 315;
+  const HEADER_Y = 250;
+  const ROW1_Y = HEADER_Y + 150;
+  const ROW2_Y = ROW1_Y + 35;
+  const ROW3_Y = ROW2_Y + 30;
 
   // --- End Layout Constants ---
 
@@ -95,7 +95,7 @@ const svg = `
     <rect width="1500" height="500" fill="#0d1117" />
     
     <text x="${HEADER_X}" y="${HEADER_Y}" class="txt tiny">
-      Hi, I'm Josh – I build indie projects :)
+      I build indie projects :)
     </text>
 
     <text x="${HEADER_X}" y="${HEADER_Y + 40}" class="txt tiny">
