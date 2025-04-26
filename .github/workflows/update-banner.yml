@@ -1,0 +1,33 @@
+name: Update Twitter Banner
+
+on:
+  schedule:
+    # Runs every hour
+    - cron: '0 * * * *'
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  update-banner:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # Or your preferred Node.js version
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run script
+      run: npx ts-node main.ts
+      env:
+        TW_CONSUMER_KEY: ${{ secrets.TW_CONSUMER_KEY }}
+        TW_CONSUMER_SECRET: ${{ secrets.TW_CONSUMER_SECRET }}
+        TW_ACCESS_TOKEN: ${{ secrets.TW_ACCESS_TOKEN }}
+        TW_ACCESS_SECRET: ${{ secrets.TW_ACCESS_SECRET }} 

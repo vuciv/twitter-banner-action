@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@types/node": "^22.15.2",
+    "node-fetch": "^3.3.2",
+    "sharp": "^0.34.1",
+    "twitter-api-v2": "^1.22.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
