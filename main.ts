@@ -95,7 +95,7 @@ const svg = `
     <rect width="1500" height="500" fill="#0d1117" />
     
     <text x="${HEADER_X}" y="${HEADER_Y}" class="txt tiny">
-      Hi, I'm Josh – I build indie projects 🚀
+      Hi, I'm Josh – I build indie projects :)
     </text>
 
     <text x="${HEADER_X}" y="${HEADER_Y + 40}" class="txt tiny">
