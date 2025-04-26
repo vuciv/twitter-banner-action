@@ -10,6 +10,8 @@ on:
 jobs:
   update-banner:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Grant write permission to commit back to the repo
 
     steps:
     - name: Checkout repository
