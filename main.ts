@@ -138,30 +138,100 @@ async function updateBanner(img: Buffer) {
 }
 
 (async () => {
-  // 1. Read previous stats
-  let previousStats: { vim: VimStats, news: NewsStats } | null = null;
+  // Helper to get YYYY-MM-DD string in UTC to avoid timezone issues
+  const getUTCDateString = (date: Date): string => {
+    const year = date.getUTCFullYear();
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setUTCDate(today.getUTCDate() - 1);
+
+  const todayDateStr = getUTCDateString(today);
+  const yesterdayDateStr = getUTCDateString(yesterday);
+
+  const todayStatsFile = `stats_${todayDateStr}.json`;
+  const yesterdayStatsFile = `stats_${yesterdayDateStr}.json`;
+
+  // --- Clean up old stats files --- 
   try {
-    const data = await fs.readFile('previous_stats.json', 'utf-8');
-    previousStats = JSON.parse(data);
-  } catch (error: any) {
-    if (error.code !== 'ENOENT') {
-      console.error('Error reading previous stats:', error);
-    } // If file not found (ENOENT), previousStats remains null, which is fine
+    const allFiles = await fs.readdir('.');
+    const statsFiles = allFiles.filter(file => /^stats_\d{4}-\d{2}-\d{2}\.json$/.test(file));
+    
+    for (const file of statsFiles) {
+      if (file !== todayStatsFile && file !== yesterdayStatsFile) {
+        try {
+          await fs.unlink(file);
+          console.log(`🧹 Deleted old stats file: ${file}`);
+        } catch (deleteError) {
+          console.error(`⚠️ Could not delete old stats file ${file}:`, deleteError);
+        }
+      }
+    }
+  } catch (readDirError) {
+    console.error('⚠️ Could not read directory for cleanup:', readDirError);
   }
+  // --- End cleanup --- 
 
-  // 2. Get current stats
-  const currentStats = await getStats();
+  let previousStatsData: { vim: VimStats, news: NewsStats } | null = null;
 
-  // 3. Build banner (passing previous stats)
-  const banner = await buildBanner(currentStats, previousStats);
-  await updateBanner(banner);
-  console.log('✅  Banner updated');
-
-  // 4. Save current stats for next run
+  // 1. Get current stats
+  let currentStats;
   try {
-    await fs.writeFile('previous_stats.json', JSON.stringify(currentStats, null, 2));
-    console.log('✅  Current stats saved to previous_stats.json');
+    currentStats = await getStats();
+    console.log('📊 Current Vim Stats:', currentStats.vim);
+    console.log('📊 Current News Stats:', currentStats.news);
   } catch (error) {
-    console.error('Error saving current stats:', error);
+    console.error('❌ Failed to fetch current stats:', error);
+    process.exit(1);
   }
+
+  // 2. Save current stats for today
+  try {
+    const dataToSave = {
+      timestamp: today.toISOString(), // Store with UTC timestamp for reference
+      stats: currentStats
+    };
+    await fs.writeFile(todayStatsFile, JSON.stringify(dataToSave, null, 2));
+    console.log(`✅  Current stats saved to ${todayStatsFile}`);
+  } catch (error) {
+    console.error(`❌ Error saving current stats to ${todayStatsFile}:`, error);
+    // Continue even if save fails, maybe we can still compare
+  }
+
+  // 3. Try to load yesterday's stats for comparison
+  try {
+    const fileContent = await fs.readFile(yesterdayStatsFile, 'utf-8');
+    const storedData = JSON.parse(fileContent);
+    if (storedData.stats) {
+      previousStatsData = storedData.stats;
+      console.log(`ℹ️  Using stats from ${yesterdayDateStr} for comparison.`);
+    } else {
+      console.warn(`⚠️  Stats data missing in ${yesterdayStatsFile}. Proceeding without comparison data.`);
+    }
+  } catch (error: any) {
+    if (error.code === 'ENOENT') {
+      console.log(`ℹ️  ${yesterdayStatsFile} not found. Cannot compare with yesterday.`);
+    } else {
+      console.error(`❌ Error reading yesterday's stats from ${yesterdayStatsFile}:`, error);
+    }
+    // previousStatsData remains null
+  }
+
+
+  // 4. Build banner
+  const banner = await buildBanner(currentStats, previousStatsData);
+  console.log('🖼️  Banner built.');
+
+  // 5. Update Twitter banner
+  try {
+    await updateBanner(banner); // Uncomment when ready to push to Twitter
+    console.log('✅  Banner updated on Twitter.');
+  } catch (error) {
+    console.error('❌ Error updating Twitter banner:', error);
+  }
+
 })();

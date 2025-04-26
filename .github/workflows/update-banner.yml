@@ -40,13 +40,13 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-    - name: Commit and push previous stats
+    - name: Commit and push stats files
       run: |
-        git add previous_stats.json
+        git add stats_*.json
         # Check if there are changes to commit
         if git diff --staged --quiet; then
-          echo "No changes to commit."
+          echo "No changes to stats files to commit."
         else
-          git commit -m "Update previous_stats.json"
+          git commit -m "Update daily stats files"
           git push
-        fi 
+        fi
