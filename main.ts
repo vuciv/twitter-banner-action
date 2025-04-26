@@ -103,11 +103,11 @@ const svg = `
     </text>
 
     <text x="${LEFT_COL_X}"  y="${ROW1_Y}" class="txt big">${vim.totalSolutions}</text>
-    <text x="${LEFT_COL_X}"  y="${ROW2_Y}" class="txt small">Total Vim Golf Solutions</text>
+    <text x="${LEFT_COL_X}"  y="${ROW2_Y}" class="txt small">Total golf.vim Solutions</text>
     <text x="${LEFT_COL_X}"  y="${ROW3_Y}" class="txt change-vim">${vimChangeData.text}</text>
 
     <text x="${RIGHT_COL_X}" y="${ROW1_Y}" class="txt big">${news.totalUsers}</text>
-    <text x="${RIGHT_COL_X}" y="${ROW2_Y}" class="txt small">Total AI Satire Users</text>
+    <text x="${RIGHT_COL_X}" y="${ROW2_Y}" class="txt small">Total AI Satire News Users</text>
     <text x="${RIGHT_COL_X}" y="${ROW3_Y}" class="txt change-news">${newsChangeData.text}</text>
   </svg>
 `;
