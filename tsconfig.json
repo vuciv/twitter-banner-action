@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    /* Base Options: */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    /* If NOT transpiling with supplemental tools */
+    "module": "NodeNext",
+    "outDir": "./dist",
+    "sourceMap": true,
+    /* Module Resolution Options */
+    "moduleResolution": "NodeNext",
+    /* Projects */
+    // "incremental": true,                         /* Enable incremental compilation */
+    // "composite": true,                           /* Enable project compilation */
+    // "tsBuildInfoFile": "./.tsbuildinfo",         /* Specify file to store incremental compilation information */
+    /* Experimental Options */
+    // "experimentalDecorators": true,              /* Enable experimental support for legacy experimental decorators */
+    // "emitDecoratorMetadata": true,               /* Enable experimental support for emitting type metadata for decorators */
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true      /* Ensure that casing is correct in imports. */
+  },
+  "include": ["main.ts"],                           /* Specify files to include */
+  "exclude": ["node_modules"]                       /* Specify files to exclude */
+  // "ts-node": {
+  //   // It is faster to skip typechecking.
+  //   // Remove if you want ts-node to do typechecking.
+  //   "transpileOnly": true,
+  //   "esm": true,
+  //   "compilerOptions": {
+  //     // compilerOptions specified here will override those declared below,
+  //     // but *only* in ts-node.  Useful if you want ts-node and tsc to use
+  //     // different options with a single tsconfig.json.
+  //     "module": "CommonJS"
+  //   }
+  // }
+} 
