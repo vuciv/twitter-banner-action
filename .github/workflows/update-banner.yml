@@ -33,4 +33,20 @@ jobs:
         TW_CONSUMER_KEY: ${{ secrets.TW_CONSUMER_KEY }}
         TW_CONSUMER_SECRET: ${{ secrets.TW_CONSUMER_SECRET }}
         TW_ACCESS_TOKEN: ${{ secrets.TW_ACCESS_TOKEN }}
-        TW_ACCESS_SECRET: ${{ secrets.TW_ACCESS_SECRET }} 
+        TW_ACCESS_SECRET: ${{ secrets.TW_ACCESS_SECRET }}
+
+    - name: Configure Git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Commit and push previous stats
+      run: |
+        git add previous_stats.json
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit."
+        else
+          git commit -m "Update previous_stats.json"
+          git push
+        fi 
