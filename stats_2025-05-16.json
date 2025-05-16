@@ -1,17 +1,17 @@
 {
-  "timestamp": "2025-05-16T06:04:06.551Z",
+  "timestamp": "2025-05-16T07:03:16.488Z",
   "stats": {
     "vim": {
-      "totalSolutions": 7543,
-      "averageKeystrokes": 34.3354103141986,
-      "averageTimeTakenSeconds": 94.46599496221663,
+      "totalSolutions": 7557,
+      "averageKeystrokes": 34.317321688500726,
+      "averageTimeTakenSeconds": 94.40267301839354,
       "uniqueSubmitters": 1
     },
     "news": {
-      "totalUsers": 45,
-      "newUsersToday": 0,
-      "dau": 0,
-      "appOpensToday": 0,
+      "totalUsers": 46,
+      "newUsersToday": 1,
+      "dau": 2,
+      "appOpensToday": 2,
       "likesToday": 0,
       "sharesToday": 0,
       "totalLikes": 30
