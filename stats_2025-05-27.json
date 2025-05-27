@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-05-27T00:11:49.510Z",
+  "stats": {
+    "vim": {
+      "totalSolutions": 9443,
+      "averageKeystrokes": 35.378375516255424,
+      "averageTimeTakenSeconds": 101.31716615482368,
+      "uniqueSubmitters": 2
+    },
+    "news": {
+      "totalUsers": 58,
+      "newUsersToday": 0,
+      "dau": 0,
+      "appOpensToday": 0,
+      "likesToday": 0,
+      "sharesToday": 0,
+      "totalLikes": 31
+    }
+  }
+}
