@@ -1,11 +1,8 @@
 {
-  "timestamp": "2025-06-02T22:03:20.567Z",
+  "timestamp": "2025-06-02T23:03:11.516Z",
   "stats": {
     "vim": {
-      "totalSolutions": 10217,
-      "averageKeystrokes": 35.52304981892924,
-      "averageTimeTakenSeconds": 99.90192815895077,
-      "uniqueSubmitters": 2
+      "error": "Failed to fetch analytics"
     },
     "news": {
       "totalUsers": 61,
