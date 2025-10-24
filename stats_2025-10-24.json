@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-24T15:03:44.412Z",
+  "timestamp": "2025-10-24T16:03:51.319Z",
   "stats": {
     "vim": {
       "totalSolutions": 14925,
@@ -10,8 +10,8 @@
     "news": {
       "totalUsers": 194,
       "newUsersToday": 1,
-      "dau": 1,
-      "appOpensToday": 2,
+      "dau": 2,
+      "appOpensToday": 5,
       "likesToday": 0,
       "sharesToday": 0,
       "totalLikes": 47
